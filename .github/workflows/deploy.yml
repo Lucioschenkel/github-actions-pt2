@@ -4,6 +4,10 @@ on:
     types:
       - deploy-command
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   validate:
     runs-on: ubuntu-latest
