@@ -34,7 +34,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    needs: validate
+    needs: prepare
     environment: ${{ github.event.client_payload.slash_command.args.named.environment }}
     steps:
       - name: Download artifact
