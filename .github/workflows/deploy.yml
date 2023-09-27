@@ -67,3 +67,12 @@ jobs:
           aws cloudfront wait invalidation-completed \
             --distribution-id ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }} \
             --id ${{ steps.cache-invalidation.outputs.id }}
+
+      - name: Create comment
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          token: ${{ secrets.PAT }}
+          repository: ${{ github.event.client_payload.github.payload.repository.full_name }}
+          issue-number: ${{ github.event.client_payload.github.payload.issue.number }}
+          body: |
+            Your deployment is available at: ${{ secrets.DEPLOYMENT_HOST }}
